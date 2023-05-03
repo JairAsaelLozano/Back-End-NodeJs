@@ -16,7 +16,7 @@ import http from 'http'
 import socketComments from "./sockets/socket.comments.js";
 
 const app = express()
-const port= process.env.PORT || 3000
+const port = process.env.PORT || 3000
 dotenv.config()
 
 // const server = http.createServer(app)
@@ -41,12 +41,12 @@ app.use(fileUpload({
 }))
 
 
-app.use('/api/posts', $post_routes)
-app.use('/auth', $user_routes)
-app.use('/api/coments', $coments_routes)
-app.use('/api/category', $category_routes)
-app.use('/api/lists', $list_routes)
-app.use('/api/galery', $galery_routes)
+// app.use('/api/posts', $post_routes)
+// app.use('/auth', $user_routes)
+// app.use('/api/coments', $coments_routes)
+// app.use('/api/category', $category_routes)
+// app.use('/api/lists', $list_routes)
+// app.use('/api/galery', $galery_routes)
 
 
 app.listen(port)
