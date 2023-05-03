@@ -50,5 +50,5 @@ app.use('/api/lists', $list_routes)
 app.use('/api/galery', $galery_routes)
 
 
-server.listen(3000)
+server.listen("https://backendweb2-idighbyrf-jairasaellozano.vercel.app")
 console.log("Server running in port 3000")
