@@ -16,7 +16,7 @@ import http from 'http'
 import socketComments from "./sockets/socket.comments.js";
 
 const app = express()
-
+const port= process.env.PORT || 4000
 dotenv.config()
 
 
@@ -50,5 +50,5 @@ app.use('/api/lists', $list_routes)
 app.use('/api/galery', $galery_routes)
 
 
-server.listen(3000)
-console.log("Server running in port 3000")
+server.listen(port)
+console.log(`Server running in port ${port}`)
