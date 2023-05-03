@@ -1,19 +1,19 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from 'body-parser'
-import $post_routes from './routes/post.routes.js'
-import $user_routes from './routes/userlogin.routes.js'
-import $coments_routes from './routes/coments.routes.js'
-import $category_routes from './routes/category.routes.js'
-import $list_routes from './routes/list.routes.js'
-import $galery_routes from './routes/galery.routes.js'
+import $post_routes from './server/routes/post.routes.js'
+import $user_routes from './server/routes/userlogin.routes.js'
+import $coments_routes from './server/routes/coments.routes.js'
+import $category_routes from './server/routes/category.routes.js'
+import $list_routes from './server/routes/list.routes.js'
+import $galery_routes from './server/routes/galery.routes.js'
 
 import mongoose from 'mongoose'
 import * as dotenv from 'dotenv'
 import fileUpload from 'express-fileupload'
 import { Server as SocketServer } from "socket.io";
 import http from 'http'
-import socketComments from "./sockets/socket.comments.js";
+import socketComments from "./server/sockets/socket.comments.js";
 
 const app = express()
 const port= process.env.PORT || 3000
