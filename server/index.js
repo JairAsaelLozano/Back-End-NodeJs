@@ -16,11 +16,10 @@ import http from 'http'
 import socketComments from "./sockets/socket.comments.js";
 
 const app = express()
-const port= process.env.PORT || 4000
+const port= process.env.PORT || 3000
 dotenv.config()
 
-
-const server = http.createServer(app)
+// const server = http.createServer(app)
 
 mongoose
   .set('strictQuery', false)
@@ -50,5 +49,5 @@ app.use('/api/lists', $list_routes)
 app.use('/api/galery', $galery_routes)
 
 
-server.listen(port)
+app.listen(port)
 console.log(`Server running in port ${port}`)
