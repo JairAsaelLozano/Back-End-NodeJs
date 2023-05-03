@@ -18,23 +18,17 @@ import socketComments from "./sockets/socket.comments.js";
 const app = express()
 
 dotenv.config()
-const whiteList = 'http://localhost:5173'
+
 
 const server = http.createServer(app)
-const io = new SocketServer(server, {
-  cors:{
-    origin: whiteList
-  }
-})
+
 mongoose
   .set('strictQuery', false)
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Connected to mongodb atlas"))
   .catch((error) => console.log("error"))
 
-app.use(cors({
-  origin: whiteList
-}));
+app.use(cors());
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -55,14 +49,6 @@ app.use('/api/category', $category_routes)
 app.use('/api/lists', $list_routes)
 app.use('/api/galery', $galery_routes)
 
-
-// socketComments(io)
-
-const onConnectionEvent = (socket) => {
-  console.log("conectado");
-}
-
-io.on("connection", onConnectionEvent)
 
 server.listen(3000)
 console.log("Server running in port 3000")
