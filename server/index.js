@@ -40,9 +40,7 @@ app.use(fileUpload({
   tempFileDir: './uploads'
 }))
 
-app.get('/api/hola', (req, res) => {
-  res.send("inicio")
-})
+
 app.use('/api/posts', $post_routes)
 app.use('/auth', $user_routes)
 app.use('/api/coments', $coments_routes)
