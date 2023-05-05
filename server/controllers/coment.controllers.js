@@ -7,7 +7,7 @@ import fs from 'fs-extra'
 import jwt from 'jsonwebtoken'
 
 export const createComent = async (req, res) => {
-  console.log("1")
+  
   const comentUser = {
     UserOwner: req.userId,
     Content: req.body.content,
@@ -23,12 +23,12 @@ export const createComent = async (req, res) => {
 
   const Comments = await ComentsModel.findOne({ PostOrigin: req.body.id_post })
   if (!Comments) {
-    console.log("2")
+
     ComentsModel(model).save()
     res.json({ success: true })
   }
   if (Comments) {
-    console.log("3")
+
     await ComentsModel.updateOne({ PostOrigin: req.body.id_post }, { $push: { comments: comentUser } })
     res.json({ success: true })
   }

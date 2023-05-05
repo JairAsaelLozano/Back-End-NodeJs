@@ -9,23 +9,22 @@ import fs from 'fs-extra'
 import jwt from 'jsonwebtoken'
 
 export const createPost = async (req, res) => {
-    // console.log(req.body)
+   
     var post_image
 
-    // console.log("llegue antes del file")
+
     if (req.files?.File) {
-        // console.log("llegue adentro del file")
+      
         const result = await uploadImage(req.files.File.tempFilePath)
 
         post_image = {
             public_id: result.public_id,
             secure_url: result.secure_url
         }
-        // console.log(result)
-        // console.log(post_image)
+
         await fs.unlink(req.files.File.tempFilePath)
     }
-    // console.log("llegue despues del file")
+
     const postUser = {
         UserNamePost: req.userId,
         TitlePost: req.body.TitlePost,
@@ -38,10 +37,10 @@ export const createPost = async (req, res) => {
         TotalSavesList: 0,
         Image: post_image
     }
-    console.log(req.body.CategoryList)
+
     let str = req.body.CategoryList
     let arr = str.split(',')
-    console.log(arr)
+
 
     for (var i = 0; i < arr.length; i++) {
         const category = {
@@ -49,7 +48,7 @@ export const createPost = async (req, res) => {
             TotalPostsUsing: 1,
         }
         try {
-            console.log(category)
+      
             
             const existingCategory = await CategoryModel.findOne({ CategoryName: category.CategoryName });
             if (existingCategory) {
@@ -59,14 +58,13 @@ export const createPost = async (req, res) => {
                 await CategoryModel.create(category);
             }
         } catch (error) {
-            console.log(error)
+      
         }
 
 
 
     }
 
-    // console.log(postUser)
     await PostModel(postUser).save()
     await UserModel.findOneAndUpdate({ _id: req.userId }, { $inc: { PostCounts: 1 } })
     res.json({ success: true, url: '/home' })
@@ -107,10 +105,10 @@ export const deletepost = async (req, res) => {
     const userpost = await PostModel.findById(req.params.id)
     if (!userpost) res.json({ success: false })
 
-    console.log(userpost)
+
     let str = userpost.CategoryList
     let arr = str.split(',')
-    console.log(arr)
+
 
     for (var i = 0; i < arr.length; i++) {
         const category = {
@@ -118,10 +116,10 @@ export const deletepost = async (req, res) => {
             TotalPostsUsing: 1,
         }
         try {
-            console.log(category)
+ 
             await CategoryModel.create(category);
         } catch (error) {
-            console.log(category)
+    
             await CategoryModel.findOneAndUpdate({ CategoryName: category.CategoryName }, { $inc: { TotalPostsUsing: -1 } });
         }
 
@@ -133,10 +131,7 @@ export const deletepost = async (req, res) => {
 }
 
 export const editPost = async (req, res) => {
-    console.log("lee apartir de aqui")
-    console.log(req.body)
-    console.log(req.params.id)
-    console.log(req.userId)
+
     const UserFound = await UserModel.findById(req.userId)
     if (!UserFound) { res.json({ success: false }) }
     const userpost = await PostModel.findById(req.params.id)

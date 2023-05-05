@@ -3,7 +3,7 @@ import GaleryModel from '../models/galery-models.js'
 import { uploadImage } from '../routes/cloudinary.js'
 import fs from 'fs-extra'
 export const createGalery = async (req, res) => {
-    console.log(req.body.GaleryName)
+
     const newGalery = {
         GaleryOwner: req.userId,
         GaleryName: req.body.GaleryName,
@@ -55,12 +55,12 @@ export const allImgGaleryByUser = async (req, res) => {
 
 export const AddimgToGalery = async (req, res) => {
 
-    console.log("llegue al AddimgToGalery")
-    console.log(req.body)
+
+
 
     var updateGalery
     if (req.files?.File) {
-        console.log("estoy entrando a el proceso de file")
+
      const result = await uploadImage(req.files.File.tempFilePath)
      updateGalery = {
        secure_url: result.secure_url,

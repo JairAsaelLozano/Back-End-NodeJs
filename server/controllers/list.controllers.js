@@ -2,7 +2,7 @@
 import ListModel from '../models/lists-models.js'
 import UserModel from '../models/users-model.js'
 export const createList = async (req, res) => {
-  console.log("aqui estoy llegando")
+
   const newList = {
     ListName: req.body.listname,
     ListOwner: req.userId,
@@ -14,8 +14,7 @@ export const createList = async (req, res) => {
 }
 
 export const addPost = async (req, res) => {
-  console.log("llegue al addPost")
-  console.log(req.body)
+
   const updateList = {
     SrcId: req.body.SrcId,
     PostId: req.body.PostId,

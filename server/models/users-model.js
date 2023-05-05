@@ -39,9 +39,9 @@ const UserSchema = new Schema({
 })
 
 UserSchema.statics.encryptPassword = async (password) => {
-    console.log("entre")
+
 const salt = await bcrypt.genSalt(10)
-console.log("entre y pase")
+
 return await bcrypt.hash(password, await bcrypt.genSalt(10))
 }
 UserSchema.statics.comparePassword = async (password, receivedPassword) => {

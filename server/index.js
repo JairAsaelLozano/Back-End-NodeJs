@@ -11,9 +11,9 @@ import $galery_routes from './routes/galery.routes.js'
 import mongoose from 'mongoose'
 import * as dotenv from 'dotenv'
 import fileUpload from 'express-fileupload'
-import { Server as SocketServer } from "socket.io";
+
 import http from 'http'
-import socketComments from "./sockets/socket.comments.js";
+
 
 const app = express()
 const port = process.env.PORT || 3000

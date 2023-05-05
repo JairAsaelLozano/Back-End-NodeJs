@@ -20,8 +20,7 @@ res.json({success: true, AllCategorys})
 export const getPostsfilters = async (req, res) => {
     
     const regex = "/^(.?(/\b" + req.params.name + "/\b)[^$])$/";
-    console.log(regex)
-    console.log(req.params.name)
+
     const AllCategorys = await PostModel.find({ CategoryList : { $regex: new  RegExp("\\b" + req.params.name + "\\b") , $options: 'i' } });
     if (!AllCategorys) res.json({success:false})
     if (AllCategorys) {

@@ -32,13 +32,15 @@ export const signup = async (req,res) => {
 
   const token = jwt.sign({id: savedUser._id}, 'secretword', {
     expiresIn:3600
+
+
   })
 
-
+  res.json({success:true})
 }
 
 export const signin = async (req,res) => {
-  console.log( req.body.UserName + " "  + req.body.Password)
+
   const userFound = await UserModel.findOne({UserName: req.body.UserName})
   if(!userFound) return res.json({message: "user not found"})
   
@@ -55,12 +57,11 @@ export const signin = async (req,res) => {
 }
 
 export const perfilVisit = async (req,res) => {
-  // console.log(req.body.userId)
+
   const UserFound = await UserModel.findById(req.params.id)
   const UserPosts = await PostModel.find({UserNamePost:req.params.id })
   if(!UserFound) return res.json({message: "user not found"})
-  // console.log(req.body.userId)
-  // console.log(UserFound)
+
   const data  = {
     user: UserFound,
     post: UserPosts
@@ -71,12 +72,11 @@ export const perfilVisit = async (req,res) => {
 
 
 export const perfil = async (req,res) => {
-  // console.log(req.body.userId)
+
   const UserFound = await UserModel.findById(req.userId)
   const UserPosts = await PostModel.find({UserNamePost:req.userId })
   if(!UserFound) return res.json({message: "user not found"})
-  // console.log(req.body.userId)
-  // console.log(UserFound)
+
   const data  = {
     user: UserFound,
     post: UserPosts
@@ -107,7 +107,7 @@ export const onlyperfil = async (req,res) => {
 }
 
 export const editperfil = async (req,res) => {
-  console.log(req.body)
+
   const UserFound = await UserModel.findById(req.userId)
   if(!UserFound) return res.json({message: "user not found"})
   
@@ -143,7 +143,7 @@ export const editperfil = async (req,res) => {
 }
 
 export const editpassword = async (req,res) => {
-  // console.log(req.body.userId)
+
   const UserFound = await UserModel.findById(req.userId)
   if(!UserFound) return res.json({message: "user not found"})
   const MatchPassword = await UserModel.comparePassword(req.body.OldPassword, UserFound.Password)
@@ -160,7 +160,7 @@ export const editpassword = async (req,res) => {
 }
 
 export const islogin = async (req, res) => {
-  console.log("a")
+
   res.json({success:true})
 
 }

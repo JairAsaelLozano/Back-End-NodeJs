@@ -9,9 +9,9 @@ export const verifyToken = async (req, res, next) => {
     if(!token) return res.json({message: "no token provider"})
 
     const decoded = jwt.verify(token, 'secretword')
-    console.log(decoded)
+
     req.userId = decoded.id
-    console.log(req.userId)
+ 
     const user = await UserModel.findById(req.userId, {password: 0})
     if(!user) return res.json({message: 'no user found'})
     
