@@ -28,10 +28,6 @@ mongoose
   .catch((error) => console.log("error"))
 
 app.use(cors());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
