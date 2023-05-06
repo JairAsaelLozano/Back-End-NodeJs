@@ -42,7 +42,11 @@ const PostSchema = new Schema({
   Image: {
     public_id: String,
     secure_url: String
-  }
+  },
+  Likes: {
+    type : Array,
+    required: true
+}
 })
 
 const PostModel = mongoose.model('posts', PostSchema)
