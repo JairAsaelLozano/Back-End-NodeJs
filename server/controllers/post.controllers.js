@@ -163,13 +163,13 @@ export const likePost = async (req, res) => {
     const UserFound = await UserModel.findById(req.userId)
     if (!UserFound) { res.json({ success: false }) }
    
-    const isliked = await PostModel.findOne({ _id: req.params.id , Likes: { $elemMatch: req.userId } })
+    const isliked = await PostModel.findOne({ _id: req.params.id_post , Likes: { $elemMatch: req.userId } })
     if(!isliked) {
-    await PostModel.findOneAndUpdate({ _id: req.params.id }, { $push: {Likes : req.userId }})
+    await PostModel.findOneAndUpdate({ _id: req.params.id_post }, { $push: {Likes : req.userId }})
     res.json({ success: true, isliked})
     }
 
-    await PostModel.findOneAndUpdate({ _id: req.params.id }, { $pull: {Likes : req.userId }})
+    await PostModel.findOneAndUpdate({ _id: req.params.id_post }, { $pull: {Likes : req.userId }})
     res.json({ success: true, isliked})
 
 }
