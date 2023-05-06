@@ -35,7 +35,8 @@ export const createPost = async (req, res) => {
         VisitsPost: 0,
         LikesPost: 0,
         TotalSavesList: 0,
-        Image: post_image
+        Image: post_image,
+        Likes: []
     }
 
     let str = req.body.CategoryList
