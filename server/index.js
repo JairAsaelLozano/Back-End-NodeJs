@@ -28,7 +28,8 @@ mongoose
   .catch((error) => console.log("error"))
 
 app.use(cors({
-  origin: '*'
+  origin: '*',
+  methods: "GET, POST, PUT, DELETE, OPTIONS"
 }));
 
 app.use(bodyParser.json());       // to support JSON-encoded bodies
