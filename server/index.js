@@ -28,8 +28,9 @@ mongoose
   .catch((error) => console.log("error"))
 
 app.use(cors({
-  origin: 'https://artunity.vercel.app/'
+  origin: '*'
 }));
+
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
