@@ -27,7 +27,9 @@ mongoose
   .then(() => console.log("Connected to mongodb atlas"))
   .catch((error) => console.log("error"))
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://artunity.vercel.app/'
+}));
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
