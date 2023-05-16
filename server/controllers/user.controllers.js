@@ -36,7 +36,7 @@ export const signup = async (req,res) => {
 
   })
 
-  res.json({success:true})
+  res.json({success:true, token})
 }
 
 export const signin = async (req,res) => {
